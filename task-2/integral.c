@@ -21,7 +21,7 @@ float calcula(float local_a, float local_b, int local_n, float h) {
   return integral;
 }
 
-main(int argc, char** argv) {
+int main(int argc, char** argv) {
   int my_rank;
   int p; // número de processos
   float a=0.0, b=1.0; //intervalo a calcular
