@@ -1,0 +1,10 @@
+gcc vector.c -o vector (0.000054)
+gcc vector.c -o vector -O3 (0.000010)
+gcc vector.c -o vector -fopenmp (0.000104)
+gcc vector.c -o vector -fopenmp -O3 (0.000077)
+## simd
+gcc vector.c -o vector -fopenmp-simd (0.000027)
+gcc vector.c -o vector -fopenmp-simd -O3 (0.000008)
+## parallel for simd
+gcc vector.c -o vector -fopenmp-simd (0.000042)
+gcc vector.c -o vector -fopenmp-simd -O3 (0.000003)
