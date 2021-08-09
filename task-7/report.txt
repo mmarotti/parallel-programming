@@ -1,0 +1,17 @@
+# 1 - sequential
+gcc vector.c -o vector (0.000054)
+gcc vector.c -o vector -O3 (0.000010)
+# 2 - parallel for
+gcc vector.c -o vector -fopenmp (0.000104)
+gcc vector.c -o vector -fopenmp -O3 (0.000077)
+# 3 - simd
+gcc vector.c -o vector -fopenmp-simd (0.000027)
+gcc vector.c -o vector -fopenmp-simd -O3 (0.000008)
+# 4 - parallel for simd
+gcc vector.c -o vector -fopenmp-simd (0.000042)
+gcc vector.c -o vector -fopenmp-simd -O3 (0.000009)
+
+
+- O primeiro ponto que podemos perceber é a diferença que o modo de otimização 3 faz para o tempo de resolução desse problema. Diminuindo consideravelmente a duração em todos os casos, isso acontece porque ele contém várias otimizações no modo de lidar com Arrays;
+- Outro ponto interessante, é o fato de o tempo com parallel for (2) ser maior até que o sequencial (1). Esse aumento é justificado porque o trabalho que temos para dividir o Array entre os processos não compensa o ganho que temos para processá-los sem nenhuma otimização;
+- Por último quando utilizamos o método simd (3 e 4) começamos a ver ganhos quando comparado ao sequencial (1), já que esse método utiliza a operação de soma de arrays diretamente, não sendo necessárias diversas somas, que seria o método convencional. Porém novamente percebemos que o trabalho para dividir os Arrays acaba não compensando o ganho para esse caso em específico.
